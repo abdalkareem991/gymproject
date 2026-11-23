@@ -12,7 +12,7 @@ function payment_settings_load(?PDO $pdo = null): array
     )->fetch();
 
     if (!$settings) {
-        throw new RuntimeException('Payment settings have not been initialized. Run the payment settings migration.');
+        throw new RuntimeException('Payment settings have not been initialized.');
     }
 
     return [

@@ -15,5 +15,5 @@ try {
     ]);
 } catch (Throwable $exception) {
     error_log('Staff payment options lookup failed: ' . $exception->getMessage());
-    json_error('Payment options are unavailable. Apply the payment settings migration and try again.', 500);
+    json_error('Payment options are unavailable. Initialize the payment settings and try again.', 500);
 }

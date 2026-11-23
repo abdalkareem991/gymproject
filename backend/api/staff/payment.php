@@ -24,7 +24,7 @@ try {
     }
 } catch (Throwable $exception) {
     error_log('Payment method validation failed: ' . $exception->getMessage());
-    json_error('Payment options are unavailable. Apply the payment settings migration and try again.', 500);
+    json_error('Payment options are unavailable. Initialize the payment settings and try again.', 500);
 }
 $amountInput = (string) $amountInput;
 if (mb_strlen($notes) > 500) {

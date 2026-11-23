@@ -15,15 +15,13 @@ Vanilla HTML, CSS, and JavaScript front end with PHP 8 and MySQL JSON APIs.
 ## Local setup
 
 1. Place the project under the XAMPP web root and open it through Apache, for example `http://localhost/gymproject/`. Do not use VS Code Live Server (usually port `5500`): it serves `.php` files as static content and cannot run the API.
-2. Import `backend/database/schema.sql` into MySQL or MariaDB. It creates/selects the `smart_gym` database and contains the current app runtime columns.
-3. If you already imported the supplied phpMyAdmin dump before these backend changes, select `smart_gym` and run `backend/database/migrations/20261108_backend_runtime_columns.sql` once to add check-out, attendance notes, and class descriptions.
-4. If your existing database still has membership-freeze fields or records, run `backend/database/migrations/20261115_remove_membership_freezes.sql` once. It removes that feature's table and fields and converts legacy frozen memberships to active or expired based on their current end date; existing membership end dates are preserved.
-5. For an existing database, run `backend/database/migrations/20261116_membership_plan_offers.sql` once to update the three active offers, prices, benefits, and class limits. Fresh imports already include these plans.
-6. For an existing database, run `backend/database/migrations/20261119_payment_settings.sql` once to add payment settings and hosted-checkout records. Fresh imports already include these tables and the default JOD payment settings.
-7. Set `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD` for Apache. Defaults are `127.0.0.1`, `3306`, `smart_gym`, `root`, and an empty password.
-8. Restart Apache after changing its environment.
+2. For an existing installation, preserve its data and apply reviewed database changes using a backup and the current live schema as the reference. The tracked `backend/database/schema.sql` is a structure-only export (no user, plan, or other application data); importing it is not a data migration and must not be used to overwrite a populated database.
+3. A fresh installation also needs application seed data (at minimum an administrator and membership plans). This repository currently does not contain a seed-data script; create those records through a separately reviewed setup procedure before relying on the app.
+4. The payment settings schema includes safe defaults, but the initial singleton row is application data. After importing the structure into a new database, insert a settings row with cash and bank transfer enabled and online card payments disabled, or create it through an approved setup procedure.
+5. Set `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD` for Apache. Defaults are `127.0.0.1`, `3306`, `smart_gym`, `root`, and an empty password.
+6. Restart Apache after changing its environment.
 
-The PDO connection is centralized in `backend/config/db.php` and uses the MariaDB dump's `full_name`, `member_id`, `start_date`/`end_date`, and plan `title` columns. The imported sample administrator is `admin@smartgym.local` with the temporary password `admin123`; the first successful login upgrades that legacy plain-text seed value to a password hash.
+The PDO connection is centralized in `backend/config/db.php` and uses `full_name`, `member_id`, `start_date`/`end_date`, and plan `title` columns. Do not assume a sample administrator or plans exist in a structure-only schema export.
 
 Apache must honor `.htaccess` overrides for this project. The root rules add security headers, disable directory listings, and preserve the original page and API URLs while serving the reorganized files. `backend/config/`, `backend/database/`, `backend/helpers/`, and `backend/storage/` deny direct web requests while remaining available to PHP includes.
 

@@ -20,7 +20,7 @@ if ($method === 'GET') {
         json_success(['settings' => $settings]);
     } catch (Throwable $exception) {
         error_log('Payment settings lookup failed: ' . $exception->getMessage());
-        json_error('Payment settings are unavailable. Apply the payment settings migration and try again.', 500);
+        json_error('Payment settings are unavailable. Initialize the payment settings and try again.', 500);
     }
 }
 
@@ -68,5 +68,5 @@ try {
     json_success(['settings' => $settings], 'Payment settings saved.');
 } catch (Throwable $exception) {
     error_log('Payment settings update failed: ' . $exception->getMessage());
-    json_error('Payment settings could not be saved. Apply the payment settings migration and try again.', 500);
+    json_error('Payment settings could not be saved. Check the payment settings table and try again.', 500);
 }
