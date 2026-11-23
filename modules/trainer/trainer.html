@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#09090b">
+    <title data-i18n="trainerPageTitle">Trainer Operations | Plus Ultra Gym</title>
+    <link rel="icon" type="image/png" href="shared/assets/plus-ultra.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared/css/variables.css">
+    <link rel="stylesheet" href="shared/css/layout.css?v=20261116-5">
+    <link rel="stylesheet" href="shared/css/skeleton.css">
+    <link rel="stylesheet" href="shared/css/navigation-loader.css?v=20261119-2">
+    <link rel="stylesheet" href="modules/trainer/trainer.css?v=20261118-1">
+    <script src="shared/js/api-client.js" defer></script>
+    <script src="modules/trainer/trainer.js?v=20261118-1" defer></script>
+    <script src="shared/js/navigation-loader.js?v=20261119-2" defer></script>
+    <script type="module" src="shared/js/core-ui.js?v=20261119-1"></script>
+  </head>
+  <body>
+    <div class="skeleton-screen trainer-skeleton" data-skeleton-screen data-skeleton-wait-for-hydration aria-hidden="true">
+      <aside class="skeleton-sidebar"><div class="skeleton-logo"></div><div class="skeleton-nav"><div class="skeleton-line long"></div><div class="skeleton-line long"></div><div class="skeleton-line long"></div></div></aside>
+      <div class="skeleton-main"><div class="skeleton-topbar"></div><div class="skeleton-line short"></div><div class="skeleton-line long"></div><div class="trainer-skeleton-kpis"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div><div class="trainer-skeleton-content"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div><div class="skeleton-card trainer-skeleton-roster"></div></div>
+    </div>
+    <div class="trainer-shell">
+      <div class="sidebar-backdrop" data-sidebar-backdrop></div>
+      <aside class="sidebar" id="trainer-sidebar" data-sidebar aria-label="Trainer navigation" data-i18n-aria="trainerNavigation">
+        <button class="brand" type="button" data-sidebar-toggle aria-controls="trainer-sidebar" aria-expanded="false" aria-label="Open navigation" data-i18n-aria="trainerOpenNavigation"><img class="brand-mark" src="shared/assets/plus-ultra.png" alt="" aria-hidden="true"><span class="brand-initials" aria-hidden="true">PU</span><span class="brand-name">PLUS ULTRA <b>TRAINER</b></span></button>
+        <p class="sidebar-label" data-i18n="trainerNavigation">TRAINER OPERATIONS</p>
+        <nav class="sidebar-nav">
+          <a class="sidebar-link" href="#overview"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></span><span class="sidebar-link-label" data-i18n="trainerOverview">Trainer overview</span></a>
+          <a class="sidebar-link" href="#schedule"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4m8-4v4M3 9h18m-13 4h3m3 0h3m-9 4h3"/></svg></span><span class="sidebar-link-label" data-i18n="trainerScheduledClasses">My scheduled classes</span></a>
+          <a class="sidebar-link" href="#roster"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1m3-11v6m-3-3h6"/></svg></span><span class="sidebar-link-label" data-i18n="trainerRosterAttendance">Class roster &amp; attendance</span></a>
+        </nav>
+        <div class="sidebar-spacer"></div>
+        <button id="logout" class="sidebar-link sidebar-logout" type="button"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5m5 5H3m9-9h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg></span><span class="sidebar-link-label" data-i18n="signOut">Sign out</span></button>
+      </aside>
+      <div class="main-column trainer-main-wrapper">
+        <header class="topbar trainer-topbar">
+          <button class="icon-button menu-trigger" type="button" data-sidebar-toggle aria-controls="trainer-sidebar" aria-expanded="false" aria-label="Open navigation" data-i18n-aria="trainerOpenNavigation"><span class="sidebar-logo-trigger-mark" aria-hidden="true">PU</span></button>
+          <div class="topbar-controls">
+            <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme" data-i18n-aria="trainerTheme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
+            <button class="language-button" type="button" data-language-toggle aria-label="Switch language">&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</button>
+            <span class="trainer-user-pill"><span class="trainer-avatar" id="trainer-avatar" aria-hidden="true">T</span><span id="trainer-name">Trainer</span></span>
+          </div>
+        </header>
+        <main class="trainer-content" id="overview">
+          <section class="trainer-intro"><div><p class="eyebrow" data-i18n="trainerEyebrow">COACHING OPERATIONS</p><h1 data-i18n="trainerHeading">Trainer workspace</h1><p class="muted" data-i18n="trainerSubtitle">Your sessions, class rosters, and attendance in one place.</p></div><button id="refresh" class="secondary-button" type="button" data-i18n="trainerRefresh">Refresh schedule</button></section>
+          <div id="notice" class="notice" role="status" aria-live="polite"></div>
+          <section class="trainer-kpis" aria-label="Trainer shift metrics" data-i18n-aria="trainerClassesLabel">
+            <article class="metric-card"><span data-i18n="trainerKpiAssigned">ASSIGNED CLASSES TODAY</span><strong id="kpi-classes-today">0</strong><small data-i18n="trainerKpiAssignedHint">Sessions on today's schedule</small></article>
+            <article class="metric-card"><span data-i18n="trainerKpiBooked">TOTAL BOOKED ATHLETES</span><strong id="kpi-booked-athletes">0</strong><small data-i18n="trainerKpiBookedHint">Across your scheduled classes</small></article>
+            <article class="metric-card"><span data-i18n="trainerKpiOccupancy">AVERAGE SEAT OCCUPANCY</span><strong id="kpi-occupancy">0%</strong><small data-i18n="trainerKpiOccupancyHint">Booked seats across scheduled classes</small></article>
+            <article class="metric-card"><span data-i18n="trainerKpiCompleted">COMPLETED SESSIONS</span><strong id="kpi-completed">0</strong><small data-i18n="trainerKpiCompletedHint">Sessions marked completed</small></article>
+          </section>
+          <section class="panel schedule-panel" id="schedule">
+            <div class="panel-heading"><div><p class="eyebrow" data-i18n="trainerScheduleEyebrow">YOUR COACHING CALENDAR</p><h2 data-i18n="trainerScheduleTitle">My scheduled group classes</h2></div><span id="class-count" class="count-badge">0</span></div>
+            <div id="class-list" class="class-grid"><p class="muted" data-i18n="trainerLoading">Loading...</p></div>
+          </section>
+          <section class="panel roster-panel" id="roster">
+            <div class="panel-heading"><div><p class="eyebrow" data-i18n="trainerAttendanceEyebrow">CLASS ROSTER &amp; ATTENDANCE</p><h2 id="roster-title" data-i18n="trainerChooseClass">Choose a class</h2></div><span id="roster-count" class="count-badge">&mdash;</span></div>
+            <p id="roster-hint" class="muted" data-i18n="trainerRosterHint">Select a scheduled class to view its roster.</p>
+            <div class="attendance-summary" id="attendance-summary" hidden><span><b id="attendance-present">0</b> <span data-i18n="trainerPresent">Present</span></span><span><b id="attendance-absent">0</b> <span data-i18n="trainerAbsent">Absent</span></span><span><b id="attendance-pending">0</b> <span data-i18n="trainerPending">Pending</span></span></div>
+            <div class="roster-table-wrap"><table class="roster-table"><thead><tr><th data-i18n="trainerMemberId">Member ID</th><th data-i18n="trainerMemberName">Full name</th><th data-i18n="trainerPhone">Phone</th><th data-i18n="trainerSubscription">Subscription</th><th data-i18n="trainerAttendanceStatus">Attendance</th><th data-i18n="trainerActions">Actions</th></tr></thead><tbody id="roster-list"></tbody></table></div>
+          </section>
+          <section class="panel create-panel" id="new-session">
+            <div class="panel-heading"><div><p class="eyebrow" data-i18n="trainerCreateEyebrow">SCHEDULE A SESSION</p><h2 data-i18n="trainerCreateTitle">Create a group class</h2></div></div>
+            <form id="class-form" class="trainer-form">
+              <label class="field"><span data-i18n="trainerClassTitle">Class title</span><input name="title" maxlength="150" required placeholder="Strength fundamentals" data-i18n-placeholder="trainerClassPlaceholder"></label>
+              <label class="field"><span data-i18n="trainerDescription">Description <small data-i18n="trainerOptional">optional</small></span><textarea name="description" rows="3" maxlength="5000" placeholder="What should members expect?" data-i18n-placeholder="trainerDescriptionPlaceholder"></textarea></label>
+              <label class="field trainer-select-field" id="trainer-select-field" hidden><span data-i18n="trainerCoach">Trainer</span><select id="trainer-select" name="trainer_id"></select></label>
+              <div class="field-grid"><label class="field"><span data-i18n="trainerStarts">Starts</span><input id="starts-at" name="starts_at" type="datetime-local" required></label><label class="field"><span data-i18n="trainerEnds">Ends</span><input id="ends-at" name="ends_at" type="datetime-local" required></label></div>
+              <label class="field"><span data-i18n="trainerCapacity">Seat capacity</span><input name="capacity" type="number" min="1" max="500" value="12" required></label>
+              <button class="primary-button" id="create-button" type="submit" data-i18n="trainerPublish">Publish class</button><p id="form-message" class="feedback" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </main>
+        <footer class="trainer-footer" data-i18n="trainerFooter">Class times are stored in UTC and displayed in your local timezone.</footer>
+      </div>
+    </div>
+    <dialog id="cancel-dialog" class="cancel-dialog"><form method="dialog"><p class="eyebrow" data-i18n="trainerCancelEyebrow">CANCEL SESSION</p><h2 data-i18n="trainerCancelTitle">Cancel this class?</h2><p id="cancel-dialog-copy" data-i18n="trainerCancelCopy">Members will see that this class is cancelled.</p><div><button type="button" class="secondary-button" id="cancel-dialog-close" data-i18n="trainerCancelButton">Keep class</button><button type="button" class="danger-button" id="cancel-dialog-confirm" data-i18n="trainerConfirmCancel">Cancel class</button></div></form></dialog>
+  </body>
+</html>

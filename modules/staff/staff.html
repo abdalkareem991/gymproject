@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="icon" type="image/png" href="shared/assets/plus-ultra.png" />
+    <title data-i18n="staffPageTitle">Reception | Plus Ultra Gym</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="shared/css/variables.css" />
+    <link rel="stylesheet" href="shared/css/layout.css?v=20261116-4" />
+    <link rel="stylesheet" href="shared/css/skeleton.css" />
+    <link rel="stylesheet" href="shared/css/navigation-loader.css?v=20261119-2" />
+    <link rel="stylesheet" href="modules/staff/staff.css" />
+    <script src="shared/js/api-client.js" defer></script>
+    <script src="shared/js/navigation-loader.js?v=20261119-2" defer></script>
+    <script type="module" src="shared/js/core-ui.js?v=20261119-1"></script>
+    <script src="modules/staff/staff.js?v=20261119-1" defer></script>
+  </head>
+  <body>
+    <div class="skeleton-screen" data-skeleton-screen data-skeleton-wait-for-hydration aria-hidden="true">
+      <aside class="skeleton-sidebar"><div class="skeleton-logo"></div><div class="skeleton-nav"><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line"></div><div class="skeleton-line"></div></div></aside>
+      <div class="skeleton-main">
+        <div class="skeleton-topbar"></div><div class="skeleton-line short"></div>
+        <div class="staff-skeleton-kpis"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+        <div class="staff-skeleton-terminal"><div class="skeleton-card staff-skeleton-search"></div><div class="skeleton-card staff-skeleton-gate"></div></div>
+        <div class="skeleton-card staff-skeleton-directory"></div>
+      </div>
+    </div>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="staff-sidebar" data-sidebar aria-label="Staff navigation" data-i18n-aria="staffNavigationAria">
+        <button class="brand" type="button" data-sidebar-toggle aria-controls="staff-sidebar" aria-expanded="false" aria-label="Open navigation"><img class="brand-mark" src="shared/assets/plus-ultra.png" alt="" aria-hidden="true" /><span class="brand-initials" aria-hidden="true">PU</span><span class="brand-name">PLUS ULTRA <b>GYM</b></span></button>
+        <p class="sidebar-label" data-i18n="staffNavigation">RECEPTION</p>
+        <nav class="sidebar-nav" aria-label="Reception navigation" data-i18n-aria="staffReceptionNavigationAria">
+          <a class="sidebar-link" href="#overview" aria-current="location"><span class="nav-icon" aria-hidden="true">01</span><span class="sidebar-link-label" data-i18n="staffOverview">Reception overview</span></a>
+          <a class="sidebar-link" href="#gate"><span class="nav-icon" aria-hidden="true">02</span><span class="sidebar-link-label" data-i18n="staffGate">Gate check-in / out</span></a>
+          <a class="sidebar-link" href="#walk-in"><span class="nav-icon" aria-hidden="true">03</span><span class="sidebar-link-label" data-i18n="staffWalkIn">Walk-in & payments</span></a>
+          <a class="sidebar-link" href="#members"><span class="nav-icon" aria-hidden="true">04</span><span class="sidebar-link-label" data-i18n="staffDirectory">Members directory</span></a>
+        </nav>
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-portal"><span id="staff-name" class="sr-only">Staff workspace</span><a id="admin-link" href="admin.html" hidden>Admin portal</a><a id="trainer-link" href="trainer.html" hidden>Trainer portal</a><button id="logout" class="button button-secondary" type="button" data-i18n="staffLogout">Logout</button></div>
+      </aside>
+      <button class="sidebar-backdrop" data-sidebar-backdrop aria-label="Close navigation" data-i18n-aria="staffCloseNavigation"></button>
+
+      <div class="main-column">
+        <header class="topbar staff-topbar">
+          <button class="icon-button menu-trigger" type="button" data-sidebar-toggle aria-controls="staff-sidebar" aria-label="Open navigation" aria-expanded="false"><span class="sidebar-logo-trigger-mark" aria-hidden="true">PU</span></button>
+          <div class="topbar-controls">
+            <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme"><svg data-sun-icon viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg data-moon-icon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg></button>
+            <button class="language-button" type="button" data-language-toggle aria-label="Switch language">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</button>
+            <span class="staff-chip"><span class="staff-avatar" aria-hidden="true">S</span><span id="staff-pill-name">Staff</span></span>
+          </div>
+        </header>
+
+        <main class="staff-main">
+          <section id="overview" class="staff-section staff-overview">
+            <div class="section-heading"><div><p class="eyebrow" data-i18n="staffDeskEyebrow">FRONT DESK OPERATIONS</p><h1 data-i18n="staffReception">Reception</h1><p class="muted" data-i18n="staffSubtitle">Manage member access, registrations and payments.</p></div><button id="refresh" class="button button-secondary" type="button" data-i18n="staffRefresh">Refresh data</button></div>
+            <div id="notice" class="notice" role="status" aria-live="polite"></div>
+            <div class="staff-kpis" aria-label="Reception metrics" data-i18n-aria="staffMetricsAria">
+              <article class="metric-card"><span data-i18n="staffCheckinsToday">CHECK-INS TODAY</span><strong id="checkins-today">-</strong><small data-i18n="staffVisitsRecorded">Recorded visits</small></article>
+              <article class="metric-card"><span data-i18n="staffInsideNow">MEMBERS INSIDE</span><strong id="members-inside">-</strong><small data-i18n="staffOpenVisits">Open visits</small></article>
+              <article class="metric-card"><span data-i18n="staffActiveMembers">ACTIVE MEMBERS</span><strong id="active-members">-</strong><small data-i18n="staffCurrentAccess">Current membership access</small></article>
+              <article class="metric-card"><span data-i18n="staffPendingPayments">PENDING PAYMENTS</span><strong id="pending-payments">-</strong><small data-i18n="staffAwaitingPayment">Awaiting payment</small></article>
+            </div>
+          </section>
+
+          <section id="gate" class="staff-section">
+            <div class="section-heading compact"><div><p class="eyebrow" data-i18n="staffGateEyebrow">MEMBER ACCESS</p><h2 data-i18n="staffGateTitle">Gate check-in / out</h2></div><span class="section-index">01</span></div>
+            <div class="staff-work-grid">
+              <article class="surface-card lookup-card">
+                <label class="field-label" for="member-search" data-i18n="staffFindMember">Find a member by ID or code</label>
+                <div class="search-field"><span aria-hidden="true">ID</span><input type="search" id="member-search" placeholder="Enter member ID, code, name, email or phone" autocomplete="off" data-i18n-placeholder="staffSearchPlaceholder" /></div>
+                <div id="search-results" class="search-results" aria-live="polite"><p class="muted small" data-i18n="staffSearchHint">Enter at least two characters to search.</p></div>
+                <div id="selected-member" class="selected-member" aria-live="polite"><span data-i18n="staffNoMemberSelected">Select a member to begin.</span></div>
+              </article>
+              <article class="surface-card gate-card">
+                <div class="card-heading"><div><p class="eyebrow" data-i18n="staffVisitManagement">LIVE GATE TERMINAL</p><h3 data-i18n="staffAccessDecision">Access decision</h3></div><span class="live-dot" aria-hidden="true"></span></div>
+                <div id="access-banner" class="access-banner access-idle" role="status" aria-live="polite"><span class="access-indicator"></span><div><strong data-i18n="staffAwaitingMember">Awaiting member</strong><small data-i18n="staffAccessHint">Select a member to check access.</small></div></div>
+                <div class="member-summary" id="checkin-summary" data-i18n="staffChooseMember">Member name, unique ID, plan and remaining duration appear here.</div>
+                <label class="field"><span data-i18n="staffVisitNote">Staff note <small data-i18n="staffOptional">optional</small></span><textarea id="checkin-notes" maxlength="500" rows="2" placeholder="Add a note for this visit" data-i18n-placeholder="staffVisitNotePlaceholder"></textarea></label>
+                <div class="gate-actions"><button id="checkin-button" class="button button-primary" type="button" disabled data-i18n="staffCheckIn">Check in</button><button id="checkout-button" class="button button-secondary" type="button" disabled data-i18n="staffCheckOut">Check out</button></div>
+                <p id="checkin-message" class="feedback" role="status" aria-live="polite"></p>
+              </article>
+            </div>
+          </section>
+
+          <section id="walk-in" class="staff-section">
+            <div class="section-heading compact"><div><p class="eyebrow" data-i18n="staffNewMemberEyebrow">FRONT DESK PAYMENTS</p><h2 data-i18n="staffWalkInTitle">Walk-in registration & payment</h2><p class="muted" data-i18n="staffWalkInSubtitle">Register a new member or activate a pending membership request.</p></div><span class="section-index">02</span></div>
+            <div class="desk-payment-grid">
+              <article class="surface-card walkin-card"><div class="card-heading"><div><p class="eyebrow" data-i18n="staffWalkInLabel">NEW WALK-IN</p><h3 data-i18n="staffRegisterWalkIn">Register and activate</h3></div></div>
+                <form id="walkin-form" class="walkin-grid">
+                  <label class="field"><span data-i18n="staffFullName">Full name</span><input name="full_name" autocomplete="name" minlength="2" maxlength="150" required /></label>
+                  <label class="field"><span data-i18n="staffEmail">Email address</span><input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
+                  <label class="field"><span data-i18n="staffPhone">Phone number</span><input name="phone" type="tel" autocomplete="tel" maxlength="32" /></label>
+                  <label class="field"><span data-i18n="staffTemporaryPassword">Temporary password <small data-i18n="staffPasswordHint">At least 10 characters</small></span><input name="password" type="password" autocomplete="new-password" minlength="10" maxlength="200" required /></label>
+                  <label class="field"><span data-i18n="staffMembershipPlan">Membership plan</span><select name="plan_id" id="walkin-plan" required><option value="" data-i18n="staffChoosePlan">Choose a plan</option></select></label>
+                  <label class="field"><span data-i18n="staffAmount">Price paid (JOD)</span><input name="amount" type="number" min="0.01" max="99999999.99" step="0.01" required /></label>
+                  <label class="field"><span data-i18n="staffPaymentMethod">Payment method</span><select name="method" required><option value="CASH" data-i18n="staffCash">Cash</option><option value="BANK_TRANSFER" data-i18n="staffBankTransfer">Bank transfer</option></select></label>
+                  <div class="walkin-submit"><button id="walkin-button" class="button button-primary" type="submit" data-i18n="staffRegisterAndPay">Register member & record payment</button><p id="walkin-message" class="feedback" role="status" aria-live="polite"></p></div>
+                </form>
+              </article>
+              <article class="surface-card pending-payment-card"><div class="card-heading"><div><p class="eyebrow" data-i18n="staffPendingActivation">PENDING REQUEST</p><h3 data-i18n="staffActivatePending">Activate membership</h3></div></div>
+                <p class="muted small" data-i18n="staffPendingHint">Find and select the member in the gate terminal, then record the remaining payment here.</p>
+                <form id="payment-form" class="payment-form">
+                  <div id="payment-member-summary" class="member-summary" data-i18n="staffNoPaymentMember">No member selected.</div>
+                  <label class="field"><span data-i18n="staffMembershipPlan">Membership plan</span><select name="membership_id" id="payment-membership" required><option value="" data-i18n="staffChoosePendingPlan">Select a pending membership</option></select></label>
+                  <label class="field"><span data-i18n="staffAmount">Price paid (JOD)</span><input name="amount" type="number" min="0.01" max="99999999.99" step="0.01" required /></label>
+                  <label class="field"><span data-i18n="staffPaymentMethod">Payment method</span><select name="method" required><option value="CASH" data-i18n="staffCash">Cash</option><option value="BANK_TRANSFER" data-i18n="staffBankTransfer">Bank transfer</option></select></label>
+                  <div class="walkin-submit"><button id="payment-button" class="button button-primary" type="submit" disabled data-i18n="staffActivateAndPay">Record payment & activate</button><p id="payment-message" class="feedback" role="status" aria-live="polite"></p></div>
+                </form>
+              </article>
+            </div>
+          </section>
+
+          <section id="members" class="staff-section">
+            <div class="section-heading compact"><div><p class="eyebrow" data-i18n="staffDirectoryEyebrow">MEMBER RECORDS</p><h2 data-i18n="staffDirectoryTitle">Members directory</h2></div><span class="section-index">03</span></div>
+            <article class="surface-card directory-card"><div class="directory-toolbar"><p class="muted" data-i18n="staffDirectoryHint">Search by ID, name, phone or email.</p><label class="directory-search"><span class="sr-only" data-i18n="staffDirectorySearch">Search members</span><input id="directory-search" type="search" placeholder="Search members" data-i18n-placeholder="staffDirectorySearch" /></label></div><div class="table-responsive"><table class="staff-table"><thead><tr><th data-i18n="staffMemberId">Member ID</th><th data-i18n="staffMember">Full name</th><th data-i18n="staffPhone">Phone</th><th data-i18n="staffEmail">Email</th><th data-i18n="staffPlan">Current plan</th><th data-i18n="staffDuration">Remaining duration</th><th data-i18n="staffStatus">Status</th><th><span class="sr-only" data-i18n="staffActions">Actions</span></th></tr></thead><tbody id="member-directory-body"><tr><td colspan="8" class="empty-cell" data-i18n="staffDirectoryLoading">Loading members...</td></tr></tbody></table></div></article>
+          </section>
+
+          <section id="activity" class="staff-section">
+            <div class="section-heading compact"><div><p class="eyebrow" data-i18n="staffActivityEyebrow">TODAY AT THE DESK</p><h2 data-i18n="staffActivityTitle">Today's gate activity</h2></div></div>
+            <div class="staff-work-grid activity-grid"><article class="surface-card activity-card"><h3 data-i18n="staffRecentVisits">Today's gate activity</h3><div class="table-responsive"><table class="staff-table"><thead><tr><th data-i18n="staffMember">Member</th><th data-i18n="staffCheckInTime">Check-in</th><th data-i18n="staffCheckOutTime">Check-out</th><th data-i18n="staffStatus">Status</th></tr></thead><tbody id="attendance-list"><tr><td colspan="4" class="empty-cell" data-i18n="staffActivityLoading">Loading activity...</td></tr></tbody></table></div></article><article class="surface-card activity-card"><div class="card-heading"><h3 data-i18n="staffRecentPayments">Recent payments</h3><strong id="cash-today">-</strong></div><div id="payments-list" class="payment-list"><p class="muted small" data-i18n="staffPaymentsLoading">Loading payments...</p></div></article></div>
+          </section>
+        </main>
+        <footer class="staff-footer">Plus Ultra Gym | <span data-i18n="staffAuthorized">Authorized staff workspace</span></footer>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+

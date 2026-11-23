@@ -1,0 +1,159 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="Executive operations, membership, and revenue dashboard for Plus Ultra Gym.">
+  <link rel="icon" type="image/png" href="shared/assets/plus-ultra.png">
+  <title data-i18n="adminTitle">Executive dashboard | Plus Ultra Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/css/variables.css">
+  <link rel="stylesheet" href="shared/css/layout.css?v=20261116-4">
+  <link rel="stylesheet" href="shared/css/skeleton.css">
+  <link rel="stylesheet" href="shared/css/navigation-loader.css?v=20261119-2">
+  <link rel="stylesheet" href="modules/admin/admin.css?v=20261119-1">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" defer></script>
+  <script src="shared/js/api-client.js" defer></script>
+  <script src="shared/js/navigation-loader.js?v=20261119-2" defer></script>
+  <script src="shared/js/core-ui.js?v=20261119-1" type="module"></script>
+  <script src="modules/admin/admin.js?v=20261119-1" defer></script>
+</head>
+<body>
+  <div class="skeleton-screen admin-skeleton" data-skeleton-screen data-skeleton-wait-for-hydration aria-hidden="false">
+    <aside class="skeleton-sidebar" aria-hidden="true"><div class="skeleton-logo"></div><div class="skeleton-nav"><div class="skeleton-line long"></div><div class="skeleton-line long"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div></div></aside>
+    <div class="skeleton-main" aria-hidden="true"><div class="skeleton-topbar"></div><div class="admin-skeleton-kpis"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div><div class="admin-skeleton-toolbar"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div></div><div class="admin-skeleton-table"><div class="skeleton-line long"></div><div class="skeleton-line long"></div><div class="skeleton-line long"></div><div class="skeleton-line long"></div><div class="skeleton-line long"></div></div></div>
+  </div>
+
+  <div class="app-shell admin-shell">
+    <div class="sidebar-backdrop" data-sidebar-backdrop></div>
+    <aside class="sidebar" id="admin-sidebar" data-sidebar aria-label="Admin navigation" data-i18n-aria="adminNavigation">
+      <button class="brand" type="button" data-sidebar-toggle aria-controls="admin-sidebar" aria-expanded="false" aria-label="Open navigation"><img class="brand-mark" src="shared/assets/plus-ultra.png" alt="" aria-hidden="true"><span class="brand-initials" aria-hidden="true">PU</span><span class="brand-name" data-i18n="brand">PLUS ULTRA <b>GYM</b></span></button>
+      <p class="sidebar-label" data-i18n="adminWorkspace">ADMIN WORKSPACE</p>
+      <nav class="sidebar-nav" aria-label="Admin navigation" data-i18n-aria="adminNavigation">
+        <a class="sidebar-link" href="#overview" aria-current="location" aria-label="Dashboard overview" data-i18n-aria="adminOverview"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></span><span class="sidebar-link-label" data-i18n="adminOverview">Dashboard Overview</span></a>
+        <a class="sidebar-link" href="#users" aria-label="All users and roles" data-i18n-aria="adminUsers"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1m3-10a3 3 0 0 1 0 6m1 4h2v-1a5 5 0 0 0-3-4.6"/></svg></span><span class="sidebar-link-label" data-i18n="adminUsers">All Users &amp; Roles</span></a>
+        <a class="sidebar-link" href="#memberships" aria-label="Memberships and requests" data-i18n-aria="adminMemberships"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12z"/><path d="M8 12h8"/></svg></span><span class="sidebar-link-label" data-i18n="adminMemberships">Memberships &amp; Requests</span></a>
+        <a class="sidebar-link" href="#plans" aria-label="Plans management" data-i18n-aria="adminPlans"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18m-14 5h4"/></svg></span><span class="sidebar-link-label" data-i18n="adminPlans">Plans Management</span></a>
+        <a class="sidebar-link" href="#reports" aria-label="Export reports" data-i18n-aria="adminReports"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></svg></span><span class="sidebar-link-label" data-i18n="adminReports">Export Reports</span></a>
+
+        <a class="sidebar-link" href="#payment-settings" aria-label="Payment settings" data-i18n-aria="paymentSettingsTitle"><span class="nav-icon" aria-hidden="true">JOD</span><span class="sidebar-link-label" data-i18n="paymentSettingsTitle">Payment settings</span></a>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <button id="logout" class="sidebar-link sidebar-logout" type="button"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5m5 5H3m9-9h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg></span><span class="sidebar-link-label" data-i18n="signOut">Sign out</span></button>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar admin-topbar">
+        <button class="icon-button menu-trigger" type="button" data-sidebar-toggle aria-controls="admin-sidebar" aria-expanded="false" aria-label="Open navigation"><span class="sidebar-logo-trigger-mark" aria-hidden="true">PU</span></button>
+        <div class="topbar-controls">
+          <button class="icon-button" type="button" data-theme-toggle aria-label="Switch to creamy light theme"><svg data-sun-icon viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></svg><svg data-moon-icon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.6 8.6 0 1 0 20.2 15.4Z" /></svg></button>
+          <button class="language-button" type="button" data-language-toggle aria-label="Switch language to Arabic">&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</button>
+          <div class="admin-profile"><span class="admin-avatar" id="admin-avatar" aria-hidden="true">A</span><strong id="admin-name">Admin</strong></div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <section class="admin-intro" id="overview">
+          <div><p class="eyebrow" data-i18n="adminEyebrow">EXECUTIVE OVERVIEW</p><h1 data-i18n="adminHeading">Dashboard overview</h1><p class="muted" data-i18n="adminSubtitle">Membership, activity, and revenue at a glance.</p></div>
+          <button id="refresh" class="quiet-button" type="button"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 12-2L20 12M4 12l2.4 5a7 7 0 0 0 12-2"/></svg></span><span data-i18n="refreshData">Refresh data</span></button>
+        </section>
+        <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+        <section class="metric-grid" aria-label="Executive key performance indicators" data-i18n-aria="adminKpiLabel">
+          <article class="metric-card"><span data-i18n="kpiActiveMembers">ACTIVE MEMBERS</span><strong id="total-members">&mdash;</strong><small data-i18n="kpiActiveMembersHint">Members with a current subscription</small></article>
+          <article class="metric-card"><span data-i18n="kpiPendingRequests">PENDING REQUESTS</span><strong id="pending-requests">&mdash;</strong><small data-i18n="kpiPendingRequestsHint">Memberships awaiting review</small></article>
+          <article class="metric-card"><span data-i18n="kpiClassesToday">CLASSES TODAY</span><strong id="classes-week">&mdash;</strong><small data-i18n="kpiClassesTodayHint">Scheduled sessions today</small></article>
+          <article class="metric-card metric-revenue"><span data-i18n="kpiTotalRevenue">TOTAL REVENUE</span><strong id="total-revenue">&mdash;</strong><small data-i18n="kpiTotalRevenueHint">Completed payments in JOD</small></article>
+        </section>
+
+        <section class="panel directory-panel" id="users" aria-labelledby="users-title">
+          <div class="panel-heading"><div><p class="eyebrow" data-i18n="directoryEyebrow">PEOPLE &amp; ACCESS</p><h2 id="users-title" data-i18n="directoryTitle">All users &amp; roles</h2><p class="chart-caption" data-i18n="directoryCaption">Review account status and current membership in one directory.</p></div><button class="secondary-button" id="refresh-users" type="button" data-i18n="refreshData">Refresh data</button></div>
+          <div class="directory-toolbar"><label class="search-field" for="member-management-search"><span data-i18n="searchUsers">Search users</span><input id="member-management-search" type="search" autocomplete="off" placeholder="Name, email, phone, or user ID" data-i18n-placeholder="searchUsersPlaceholder"></label><div class="filter-pills" role="group" aria-label="Filter user directory" data-i18n-aria="filterDirectory">
+            <button class="filter-pill is-active" type="button" data-user-filter="ALL" data-i18n="filterAll">All Users</button><button class="filter-pill" type="button" data-user-filter="ACTIVE_MEMBER" data-i18n="filterActiveMembers">Active Members</button><button class="filter-pill" type="button" data-user-filter="NON_MEMBER" data-i18n="filterNonMembers">Non-Members</button><button class="filter-pill" type="button" data-user-filter="TRAINER" data-i18n="roleTrainer">Trainers</button><button class="filter-pill" type="button" data-user-filter="STAFF_ADMIN" data-i18n="filterStaffAdmin">Staff &amp; Admins</button>
+          </div></div>
+          <p id="directory-message" class="operation-message" role="status" aria-live="polite"></p>
+          <div class="table-responsive"><table class="directory-table"><thead><tr><th data-i18n="userColumn">User</th><th data-i18n="roleColumn">Role</th><th data-i18n="statusColumn">Status</th><th data-i18n="planColumn">Current plan</th><th data-i18n="paidColumn">Price paid</th><th data-i18n="durationColumn">Remaining duration</th><th data-i18n="actionsColumn">Actions</th></tr></thead><tbody id="member-management-list"><tr><td colspan="7" class="muted" data-i18n="loadingUsers">Loading...</td></tr></tbody></table></div>
+        </section>
+
+        <section class="admin-two-column" id="memberships">
+          <article class="panel section-panel">
+            <div class="panel-heading"><div><p class="eyebrow" data-i18n="requestsEyebrow">MEMBERSHIP REQUESTS</p><h2 data-i18n="requestsTitle">Pending requests</h2></div><button class="secondary-button" id="refresh-requests" type="button" data-i18n="refresh">Refresh</button></div>
+            <div id="membership-requests" class="request-list" aria-live="polite"><p class="muted" data-i18n="loadingRequests">Loading...</p></div>
+          </article>
+          <article class="panel section-panel">
+            <div class="panel-heading"><div><p class="eyebrow" data-i18n="activationEyebrow">FRONT DESK</p><h2 data-i18n="activationTitle">Activate membership</h2></div></div>
+            <form id="membership-form" class="admin-form">
+              <label for="admin-member-search" data-i18n="findMember">Find an active member</label><input id="admin-member-search" type="search" minlength="2" autocomplete="off" placeholder="Name or email" data-i18n-placeholder="memberSearchPlaceholder">
+              <div id="admin-member-results" class="member-search-results" role="listbox" aria-label="Member search results" data-i18n-aria="memberResults"></div>
+              <input id="membership-user-id" name="user_id" type="hidden" required><p id="selected-admin-member" class="muted small" data-i18n="noMemberSelected">No member selected.</p>
+              <label for="membership-plan" data-i18n="planLabel">Plan</label><select id="membership-plan" name="plan_id" required><option value="" data-i18n="loadPlanFirst">Create or load a plan first</option></select>
+              <div class="form-row"><label for="membership-starts-on" data-i18n="startsOn">Starts on<input id="membership-starts-on" name="starts_on" type="date" required></label><label for="membership-amount" data-i18n="paidAmount">Paid amount<input id="membership-amount" name="amount" type="number" min="0" max="99999999.99" step="0.01" required></label></div>
+              <label for="payment-method" data-i18n="paymentMethod">Payment method</label><select id="payment-method" name="method" required><option value="CASH" data-i18n="cash">Cash</option><option value="BANK_TRANSFER" data-i18n="bankTransfer">Bank transfer</option></select>
+              <button id="activate-membership" class="primary-button" type="submit" disabled data-i18n="activateRecordPayment">Activate and record payment</button><p id="membership-message" class="operation-message" role="status" aria-live="polite"></p>
+            </form>
+          </article>
+        </section>
+
+        <section class="admin-two-column" id="plans">
+          <article class="panel section-panel">
+            <div class="panel-heading"><div><p class="eyebrow" data-i18n="plansEyebrow">PLAN CATALOG</p><h2 data-i18n="plansTitle">Plans management</h2></div><button class="primary-button" id="create-plan-open" type="button" data-i18n="addPlan">Add plan</button></div>
+            <dialog id="plan-dialog" class="plan-dialog" aria-labelledby="plan-dialog-title">
+            <div class="plan-dialog-heading"><h2 id="plan-dialog-title" data-i18n="createPlan">Create plan</h2><button class="icon-button" id="close-plan-dialog" type="button" aria-label="Close plan editor" data-i18n-aria="closePlanEditor">&times;</button></div>
+            <form id="plan-form" class="admin-form">
+              <input id="plan-id" name="plan_id" type="hidden">
+              <label for="plan-name" data-i18n="planName">Plan name<input id="plan-name" name="name" maxlength="120" required></label>
+              <div class="form-row"><label for="plan-duration" data-i18n="durationDays">Duration (days)<input id="plan-duration" name="duration_days" type="number" min="1" max="3650" value="30" required></label><label for="plan-price" data-i18n="planPrice">Price (JOD)<input id="plan-price" name="price" type="number" min="0" max="99999999.99" step="0.01" value="0.00" required></label></div>
+              <div class="form-row"><label for="plan-monthly-limit" data-i18n="monthlyClassLimit">Monthly class limit (blank = unlimited)<input id="plan-monthly-limit" name="monthly_class_limit" type="number" min="1" max="1000"></label><label for="plan-term-limit" data-i18n="termClassLimit">Membership class limit (blank = unlimited)<input id="plan-term-limit" name="term_class_limit" type="number" min="1" max="10000"></label></div>
+              <input name="currency" type="hidden" value="JOD">
+              <label for="plan-description" data-i18n="planDescription">Description<textarea id="plan-description" name="description" rows="3" maxlength="10000"></textarea></label>
+              <div class="form-actions"><button id="save-plan" class="primary-button" type="submit" data-i18n="createPlan">Create plan</button><button id="cancel-plan-edit" class="secondary-button" type="button" hidden data-i18n="cancel">Cancel</button></div><p id="plan-message" class="operation-message" role="status" aria-live="polite"></p>
+            </form>
+            </dialog>
+          </article>
+          <article class="panel section-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="availablePlans">AVAILABLE PLANS</p><h2 data-i18n="catalogTitle">Membership catalog</h2></div></div><div id="plan-list" class="operation-list" aria-live="polite"></div></article>
+        </section>
+
+
+        <section class="panel payment-settings-panel" id="payment-settings" aria-labelledby="payment-settings-heading">
+          <div class="panel-heading"><div><p class="eyebrow" data-i18n="paymentSettingsEyebrow">PAYMENT CONTROLS</p><h2 id="payment-settings-heading" data-i18n="paymentSettingsTitle">Payment settings</h2></div><span class="request-plan-badge">JOD</span></div>
+          <p class="chart-caption" data-i18n="paymentSettingsDescription">Choose which manual payment methods reception can record. Online card payments remain unavailable until a provider is selected and configured.</p>
+          <form id="payment-settings-form" class="admin-form payment-settings-form">
+            <label class="payment-setting-option"><input type="checkbox" name="cash_enabled" checked><span><strong data-i18n="cash">Cash</strong><small data-i18n="paymentCashDescription">Allow reception to record cash payments.</small></span></label>
+            <label class="payment-setting-option"><input type="checkbox" name="bank_transfer_enabled" checked><span><strong data-i18n="bankTransfer">Bank transfer</strong><small data-i18n="paymentTransferDescription">Allow reception to record bank transfers.</small></span></label>
+            <label class="payment-setting-option"><input type="checkbox" name="online_enabled" disabled><span><strong data-i18n="onlineCardPayments">Online card payments</strong><small data-i18n="onlineCardDescription">Accept card payments for memberships through a hosted provider checkout.</small></span></label>
+            <div class="gateway-status"><span class="status" id="gateway-status-badge" data-i18n="gatewayNotConfigured">Provider not configured</span><p id="gateway-status-copy" class="chart-caption" data-i18n="gatewayConfigurationHint">Online card checkout is disabled until a provider and server credentials are configured.</p></div>
+            <button id="save-payment-settings" class="primary-button" type="submit" data-i18n="savePaymentSettings">Save payment settings</button>
+            <p id="payment-settings-message" class="operation-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+
+        <section class="admin-two-column" aria-label="Team management and account creation">
+          <article class="panel section-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="teamEyebrow">STAFF ACCESS</p><h2 data-i18n="teamTitle">Create a team account</h2></div></div>
+            <form id="team-form" class="admin-form"><div class="form-row"><label data-i18n="firstName">First name<input name="first_name" maxlength="100" required></label><label data-i18n="lastName">Last name<input name="last_name" maxlength="100" required></label></div><label data-i18n="email">Email<input name="email" type="email" maxlength="254" autocomplete="off" required></label><label data-i18n="phoneOptional">Phone (optional)<input name="phone" type="tel" maxlength="32"></label><div class="form-row"><label data-i18n="roleLabel">Role<select name="role" required><option value="TRAINER" data-i18n="roleTrainer">Trainer</option><option value="STAFF" data-i18n="roleStaff">Reception staff</option></select></label><label data-i18n="initialPassword">Initial password<input name="password" type="password" minlength="12" maxlength="72" autocomplete="new-password" required></label></div><button class="primary-button" type="submit" data-i18n="createTeamAccount">Create team account</button><p class="chart-caption" data-i18n="passwordNote">Share the initial password directly with the employee.</p><p id="team-message" class="operation-message" role="status" aria-live="polite"></p></form>
+            <div id="team-list" class="operation-list" aria-live="polite"></div>
+          </article>
+          <article class="panel section-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="memberAccess">MEMBER ACCESS</p><h2 data-i18n="createMember">Create a member account</h2></div></div>
+            <form id="member-form" class="admin-form"><div class="form-row"><label data-i18n="firstName">First name<input name="first_name" maxlength="100" required></label><label data-i18n="lastName">Last name<input name="last_name" maxlength="100" required></label></div><label data-i18n="email">Email<input name="email" type="email" maxlength="254" required></label><label data-i18n="phoneOptional">Phone (optional)<input name="phone" type="tel" maxlength="32"></label><label data-i18n="initialPassword">Initial password<input name="password" type="password" minlength="10" maxlength="72" autocomplete="new-password" required></label><button class="primary-button" type="submit" data-i18n="createMemberAccount">Create member account</button><p id="member-form-message" class="operation-message" role="status" aria-live="polite"></p></form>
+          </article>
+        </section>
+
+        <section class="chart-grid" aria-label="Gym analytics" data-i18n-aria="analyticsLabel">
+          <article class="panel chart-panel revenue-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="completedPayments">COMPLETED PAYMENTS</p><h2 data-i18n="revenueTrend">Revenue trend</h2></div><label class="select-label" for="revenue-currency" data-i18n="currencyLabel">Currency<select id="revenue-currency"><option value="" data-i18n="noData">No data</option></select></label></div><p class="chart-caption" data-i18n="revenueCaption">Monthly completed payments for the last six months.</p><div class="chart-wrap"><canvas id="revenue-chart" aria-label="Monthly completed revenue chart" data-i18n-aria="revenueChart"></canvas></div></article>
+          <article class="panel chart-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="membershipMix">MEMBERSHIP MIX</p><h2 data-i18n="activePlans">Active plans</h2></div></div><p class="chart-caption" data-i18n="activePlansCaption">Members with active subscriptions today.</p><div class="chart-wrap doughnut-wrap"><canvas id="plans-chart" aria-label="Active memberships by plan" data-i18n-aria="plansChart"></canvas></div></article>
+          <article class="panel chart-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="memberAcquisition">MEMBER ACQUISITION</p><h2 data-i18n="newMembers">New members</h2></div></div><p class="chart-caption" data-i18n="newMembersCaption">Active member accounts created each month.</p><div class="chart-wrap"><canvas id="growth-chart" aria-label="New members by month" data-i18n-aria="growthChart"></canvas></div></article>
+          <article class="panel chart-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="facilityUse">FACILITY USE</p><h2 data-i18n="dailyAttendance">Daily attendance</h2></div></div><p class="chart-caption" data-i18n="attendanceCaption">Recorded check-ins over the last 14 days.</p><div class="chart-wrap"><canvas id="attendance-chart" aria-label="Daily attendance chart" data-i18n-aria="attendanceChart"></canvas></div></article>
+        </section>
+
+        <section class="panel report-panel" id="reports"><div class="panel-heading report-heading"><div><p class="eyebrow" data-i18n="dataExport">DATA EXPORT</p><h2 data-i18n="downloadReports">Download reports</h2></div><span class="chart-caption" data-i18n="reportRangeNote">Dates use UTC. Maximum range: 366 days.</span></div><div class="report-controls"><label class="date-label" for="report-from" data-i18n="fromDate">From<input id="report-from" type="date"></label><label class="date-label" for="report-to" data-i18n="toDate">To<input id="report-to" type="date"></label><button id="export-payments" class="primary-button" type="button" data-i18n="exportPayments">Export payments CSV</button><button id="export-attendance" class="secondary-button" type="button" data-i18n="exportAttendance">Export attendance CSV</button></div></section>
+
+        <section class="admin-two-column recent-grid"><article class="panel section-panel table-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="latestActivity">LATEST ACTIVITY</p><h2 data-i18n="recentPayments">Recent payments</h2></div></div><div class="table-responsive"><table><thead><tr><th data-i18n="memberColumn">Member</th><th data-i18n="dateColumn">Date</th><th data-i18n="methodColumn">Method</th><th data-i18n="amountColumn">Amount</th><th data-i18n="statusColumn">Status</th></tr></thead><tbody id="payment-rows"><tr><td colspan="5" class="muted" data-i18n="loadingPayments">Loading...</td></tr></tbody></table></div></article><article class="panel section-panel"><div class="panel-heading"><div><p class="eyebrow" data-i18n="newAccounts">NEW ACCOUNTS</p><h2 data-i18n="recentMembers">Recent members</h2></div></div><div id="recent-members" class="member-list"><p class="muted" data-i18n="loadingMembers">Loading...</p></div></article></section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

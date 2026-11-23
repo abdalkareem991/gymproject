@@ -1,0 +1,25 @@
+Options -Indexes
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Keep the existing public page URLs while serving files from their modules.
+    RewriteRule ^index\.html$ modules/landing/index.html [END]
+    RewriteRule ^(login|register)\.html$ modules/auth/$1.html [END]
+    RewriteRule ^(admin|staff|member|classes|trainer)\.html$ modules/$1/$1.html [END]
+
+    # Keep API clients on the established /api/... paths.
+    RewriteRule ^api/(.*)$ backend/api/$1 [END]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+<FilesMatch "(^\.|\.(sql|log|ini|bak|old)$|^README\.md$)">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,6 @@
+Options -Indexes
+
+# Shared auth helpers are PHP includes, not public HTTP endpoints.
+<Files "common.php">
+    Require all denied
+</Files>

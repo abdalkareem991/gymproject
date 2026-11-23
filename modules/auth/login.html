@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="Sign in to your Plus Ultra Gym member account.">
+  <link rel="icon" type="image/png" href="shared/assets/plus-ultra.png">
+  <title data-i18n="authLoginTitle">Sign in | Plus Ultra Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/css/variables.css">
+  <link rel="stylesheet" href="shared/css/layout.css?v=20261116-4">
+  <link rel="stylesheet" href="shared/css/skeleton.css">
+  <link rel="stylesheet" href="shared/css/navigation-loader.css?v=20261119-2">
+  <link rel="stylesheet" href="modules/auth/auth.css">
+  <script src="shared/js/api-client.js" defer></script>
+  <script src="shared/js/navigation-loader.js?v=20261119-2" defer></script>
+  <script src="modules/auth/auth.js" defer></script>
+  <script type="module" src="shared/js/core-ui.js?v=20261119-1"></script>
+</head>
+<body>
+  <div class="skeleton-screen auth-skeleton" data-skeleton-screen aria-hidden="false">
+    <div class="auth-skeleton-topbar" aria-hidden="true"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div>
+    <div class="auth-skeleton-layout" aria-hidden="true">
+      <div class="auth-skeleton-story"><div class="skeleton-line short"></div><div class="skeleton-line long"></div><div class="skeleton-line medium"></div><div class="skeleton-line long"></div></div>
+      <div class="auth-skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div><div class="skeleton-card"></div><div class="skeleton-line short"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+    </div>
+  </div>
+
+  <div class="auth-page">
+    <header class="topbar auth-topbar">
+      <div class="topbar-inner">
+        <a class="auth-home-link" href="index.html"><span aria-hidden="true">&larr;</span><span data-i18n="backHome">Back to Home</span></a>
+        <div class="topbar-controls">
+          <button class="icon-button" type="button" data-theme-toggle aria-label="Switch to creamy light theme">
+            <svg data-sun-icon viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></svg>
+            <svg data-moon-icon viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.6 8.6 0 1 0 20.2 15.4Z" /></svg>
+          </button>
+          <button class="language-button" type="button" data-language-toggle aria-label="Switch language to Arabic">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="auth-layout">
+      <section class="auth-story" aria-labelledby="auth-story-title">
+        <div class="auth-story-content">
+          <a class="auth-brand" href="index.html" aria-label="Plus Ultra Gym home" data-i18n-aria="authHomeAria"><img class="brand-mark" src="shared/assets/plus-ultra.png" alt="" aria-hidden="true"><span class="auth-brand-name"><span data-i18n="authBrand">PLUS ULTRA</span> <b data-i18n="authBrandSuffix">GYM</b></span></a>
+          <p class="auth-eyebrow" data-i18n="authLoginEyebrow">Your next level starts here</p>
+          <h1 id="auth-story-title"><span data-i18n="authLoginStoryStart">TRAIN WITH</span> <span data-i18n="authLoginStoryAccent">INTENT.</span></h1>
+          <p class="auth-story-description" data-i18n="authLoginStoryText">One place for your membership and classes. Sign in to get back to your training.</p>
+          <ul class="auth-benefits">
+            <li data-i18n="authBenefitClasses">Expert-led classes</li>
+            <li data-i18n="authBenefitMembership">Membership at a glance</li>
+            <li data-i18n="authBenefitPortal">Your gym, in sync</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="auth-card" aria-labelledby="auth-title">
+        <div class="auth-card-heading"><h2 id="auth-title" data-i18n="authLoginHeading">Welcome back</h2><p data-i18n="authLoginSubtitle">Sign in to your member account.</p></div>
+        <form class="auth-form" id="auth-form" data-endpoint="api/auth/login.php" data-submit-key="authLoginSubmit" data-loading-key="authLoading" data-error-key="authLoginError">
+          <div class="auth-field"><label for="email" data-i18n="authEmailLabel">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="name@example.com" data-i18n-placeholder="authEmailPlaceholder"></div>
+          <div class="auth-field"><label for="password" data-i18n="authPasswordLabel">Password</label><div class="auth-password-control"><input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password" data-i18n-placeholder="authPasswordPlaceholder"><button class="password-toggle" type="button" data-password-toggle="password" aria-label="Show password">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" /><circle cx="12" cy="12" r="2.5" /></svg>
+          </button></div></div>
+          <div class="auth-form-options"><label class="auth-checkbox" for="remember"><input id="remember" name="remember" type="checkbox"><span data-i18n="authRemember">Remember me</span></label></div>
+          <button class="button button-primary auth-submit" type="submit" data-i18n="authLoginSubmit">Sign in</button>
+          <p class="auth-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+        <p class="auth-switch"><span data-i18n="authNoAccount">New to Plus Ultra Gym?</span> <a href="register.html" data-i18n="authCreateAccount">Create an account</a></p>
+        <p class="auth-footnote" data-i18n="authSecurityNote">Your sign-in is protected by a secure session.</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

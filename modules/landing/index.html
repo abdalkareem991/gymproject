@@ -1,0 +1,178 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="Plus Ultra Gym memberships, gate check-in, and group classes.">
+  <link rel="icon" type="image/png" href="shared/assets/plus-ultra.png">
+  <title data-i18n="pageTitle">Plus Ultra Gym | Fitness, Memberships &amp; Classes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/css/variables.css">
+  <link rel="stylesheet" href="shared/css/layout.css?v=20261116-4">
+  <link rel="stylesheet" href="shared/css/skeleton.css">
+  <link rel="stylesheet" href="shared/css/navigation-loader.css?v=20261119-2">
+  <link rel="stylesheet" href="modules/landing/landingpage.css?v=20261119-1">
+  <script src="shared/js/navigation-loader.js?v=20261119-2" defer></script>
+  <script src="modules/landing/landing.js?v=20261119-1" defer></script>
+  <script type="module" src="shared/js/core-ui.js?v=20261119-1"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="sidebar-backdrop" data-sidebar-backdrop></div>
+    <aside class="sidebar" id="site-sidebar" data-sidebar aria-label="Main navigation" data-i18n-aria="primaryNavigation">
+      <button class="brand" type="button" data-sidebar-toggle aria-controls="site-sidebar" aria-expanded="false" aria-label="Open navigation">
+        <img class="brand-mark" src="shared/assets/plus-ultra.png" alt="" aria-hidden="true">
+        <span class="brand-initials" aria-hidden="true">PU</span>
+        <span class="brand-name" data-i18n="brand">PLUS ULTRA <b>GYM</b></span>
+      </button>
+      <p class="sidebar-label" data-i18n="explore">EXPLORE</p>
+      <nav class="sidebar-nav" aria-label="Main navigation" data-i18n-aria="primaryNavigation">
+        <a class="sidebar-link" href="#overview" aria-current="location" aria-label="Overview" data-i18n-aria="overview"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z" /></svg></span><span class="sidebar-link-label" data-i18n="overview">Overview</span></a>
+        <a class="sidebar-link" href="#how-it-works" aria-label="How It Works" data-i18n-aria="howItWorks"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14v18l-7-4-7 4z" /><path d="M9 8h6m-6 4h6" /></svg></span><span class="sidebar-link-label" data-i18n="howItWorks">How It Works</span></a>
+        <a class="sidebar-link" href="#memberships" aria-label="Memberships" data-i18n-aria="memberships"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18m-14 5h4" /></svg></span><span class="sidebar-link-label" data-i18n="memberships">Memberships</span></a>
+        <a class="sidebar-link" href="#classes" aria-label="Classes" data-i18n-aria="classes"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18m-13 4h3m3 0h3m-9 4h3" /></svg></span><span class="sidebar-link-label" data-i18n="classes">Classes</span></a>
+        <a class="sidebar-link" href="#contact" aria-label="Contact" data-i18n-aria="contact"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg></span><span class="sidebar-link-label" data-i18n="contact">Contact</span></a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-portal">
+        <p data-i18n="memberPortal">MEMBER PORTAL</p>
+        <p data-i18n="portalDescription">Your training schedule and membership, in one place.</p>
+        <div class="sidebar-portal-actions">
+          <a class="button button-secondary button-block" href="login.html" data-i18n="memberLogin">Member Login</a>
+          <a class="button button-primary button-block" href="register.html" data-i18n="joinNow">Join Now</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button class="icon-button menu-trigger" type="button" data-sidebar-toggle aria-controls="site-sidebar" aria-expanded="false" aria-label="Open navigation">
+          <span class="sidebar-logo-trigger-mark" aria-hidden="true">PU</span>
+        </button>
+        <span class="sr-only">PLUS ULTRA GYM</span>
+        <div class="topbar-controls">
+          <button class="icon-button" type="button" data-theme-toggle aria-label="Switch to creamy light theme">
+            <svg data-sun-icon viewBox="0 0 24 24" aria-hidden="true" hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></svg>
+            <svg data-moon-icon viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.6 8.6 0 1 0 20.2 15.4Z" /></svg>
+          </button>
+          <button class="language-button" type="button" data-language-toggle aria-label="Switch language to Arabic">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" id="overview">
+          <div class="content-container hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-i18n="heroEyebrow">A smarter way to train</span></p>
+              <h1><span data-i18n="heroTitleStart">ENGINEER YOUR STRENGTH.</span> <span class="accent-text" data-i18n="heroTitleEnd">ELEVATE YOUR PERFORMANCE.</span></h1>
+              <p class="hero-description" data-i18n="heroDescription">Manage your membership, enter with a quick gate check-in, and reserve group classes from one simple digital platform.</p>
+              <div class="hero-actions">
+                <a class="button button-primary button-large" href="register.html"><span data-i18n="joinNow">Join Now</span><svg class="small-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></a>
+                <a class="button button-secondary button-large" href="login.html" data-i18n="memberLogin">Member Login</a>
+              </div>
+              <div class="hero-metrics" aria-label="Member benefits">
+                <article class="metric"><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V4m16 17V4M4 8h16M8 8v13m8-13v13M8 4h8" /></svg></span><div><strong data-i18n="statGateTitle">Instant Gate Check-In</strong><span data-i18n="statGateText">Enter with your Member ID</span></div></article>
+                <article class="metric"><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M16 3v4M8 3v4M3 10h18m3 4h3m-3 4h3" /></svg></span><div><strong data-i18n="statSeatsTitle">Capped Class Capacity</strong><span data-i18n="statSeatsText">Reserve your seat ahead</span></div></article>
+                <article class="metric"><span class="metric-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2" /><path d="M8 22h8m-4-4v4m-5-11 3 3 6-6" /></svg></span><div><strong data-i18n="statPortalTitle">24/7 Digital Portal</strong><span data-i18n="statPortalText">Your membership at a glance</span></div></article>
+              </div>
+            </div>
+            <div class="hero-visual" role="img" aria-label="Athletes training in a modern gym" data-i18n-aria="heroImage">
+              <div class="hero-mosaic" aria-hidden="true">
+                <div class="hero-mosaic-column hero-mosaic-column-one"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""><img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""></div>
+                <div class="hero-mosaic-column hero-mosaic-column-two"><img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""></div>
+                <div class="hero-mosaic-column hero-mosaic-column-three"><img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""><img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt=""></div>
+              </div>
+              <div class="visual-card"><span class="visual-card-label" data-i18n="visualLabel">YOUR TRAINING, IN SYNC</span><strong data-i18n="visualTitle">Show up. Check in. Get stronger.</strong><span class="visual-line"><i></i></span></div>
+              <span class="visual-chip"><span class="status-dot" aria-hidden="true"></span><span data-i18n="visualLive">MEMBER ACCESS READY</span></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="gym-gallery-section" id="gym-gallery" aria-labelledby="gym-gallery-title">
+          <div class="content-container">
+            <div class="gym-gallery-heading">
+              <div class="section-heading"><p class="eyebrow" data-i18n="gymGalleryEyebrow">TRAIN WITH PURPOSE</p><h2 id="gym-gallery-title" data-i18n="gymGalleryTitle">Built for your next rep.</h2><p data-i18n="gymGalleryDescription">A closer look at the space, the sessions, and the community behind every strong day.</p></div>
+              <button class="gallery-motion-button" type="button" data-gallery-motion aria-pressed="false" aria-label="Pause gallery movement" data-i18n-aria="galleryPause">
+                <svg data-gallery-pause-icon viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+                <svg data-gallery-play-icon viewBox="0 0 24 24" aria-hidden="true" hidden><path d="m8 5 12 7-12 7z"/></svg>
+                <span data-gallery-pause-label data-i18n="galleryPause">Pause motion</span>
+                <span data-gallery-resume-label data-i18n="galleryResume" hidden>Resume motion</span>
+              </button>
+            </div>
+            <div class="gym-gallery-lane" aria-label="Gym training photos">
+              <div class="gym-gallery-track">
+                <div class="gym-gallery-set">
+                  <button class="gym-gallery-photo" type="button" data-gallery-photo aria-label="Preview gym training photo" data-i18n-aria="galleryOpenPhoto"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryStrength">Strength floor</span></button>
+                  <button class="gym-gallery-photo" type="button" data-gallery-photo aria-label="Preview gym training photo" data-i18n-aria="galleryOpenPhoto"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryCommunity">Train together</span></button>
+                  <button class="gym-gallery-photo" type="button" data-gallery-photo aria-label="Preview gym training photo" data-i18n-aria="galleryOpenPhoto"><img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryConditioning">Conditioning</span></button>
+                  <button class="gym-gallery-photo" type="button" data-gallery-photo aria-label="Preview gym training photo" data-i18n-aria="galleryOpenPhoto"><img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryCombat">Combat fitness</span></button>
+                </div>
+                <div class="gym-gallery-set" aria-hidden="true" inert>
+                  <div class="gym-gallery-photo"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryStrength">Strength floor</span></div>
+                  <div class="gym-gallery-photo"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryCommunity">Train together</span></div>
+                  <div class="gym-gallery-photo"><img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryConditioning">Conditioning</span></div>
+                  <div class="gym-gallery-photo"><img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="" loading="lazy"><span data-i18n="galleryCombat">Combat fitness</span></div>
+                </div>
+              </div>
+            </div>
+            <dialog class="gym-gallery-dialog" data-gallery-dialog aria-label="Gym training photo preview" data-i18n-aria="galleryPreview">
+              <button class="gym-gallery-close" type="button" data-gallery-close aria-label="Close photo preview" data-i18n-aria="galleryClose"><span aria-hidden="true">&times;</span></button>
+              <img data-gallery-dialog-image alt="">
+              <p data-gallery-dialog-caption></p>
+            </dialog>
+          </div>
+        </section>
+
+        <section class="section section-muted" id="how-it-works">
+          <div class="content-container">
+            <div class="section-heading"><p class="eyebrow" data-i18n="workflowEyebrow">Simple from day one</p><h2 data-i18n="workflowTitle">HOW IT WORKS</h2><p data-i18n="workflowDescription">A clear path from your first membership request to your next class.</p></div>
+            <div class="steps-grid">
+              <article class="step-card"><span class="step-number">01</span><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4" /><path d="M3 21v-2a6 6 0 0 1 12 0v2m4-12v6m-3-3h6" /></svg></span><h3 data-i18n="stepOneTitle">Request Membership</h3><p data-i18n="stepOneText">Register online and submit your preferred membership plan.</p></article>
+              <article class="step-card"><span class="step-number">02</span><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18m-13 5 2 2 5-5" /></svg></span><h3 data-i18n="stepTwoTitle">Desk Activation</h3><p data-i18n="stepTwoText">Complete payment at reception to activate your plan and unique Member ID.</p></article>
+              <article class="step-card"><span class="step-number">03</span><span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" /><path d="M4 5v14" /></svg></span><h3 data-i18n="stepThreeTitle">Check In &amp; Book</h3><p data-i18n="stepThreeText">Enter your Member ID at the reception gate and reserve a group class.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="memberships">
+          <div class="content-container">
+            <div class="section-heading"><p class="eyebrow" data-i18n="plansEyebrow">Membership plans</p><h2 data-i18n="plansTitle">YOUR PLAN. YOUR PACE.</h2><p data-i18n="plansDescription">Choose the membership that fits your routine. Every plan includes gym access and group classes.</p></div>
+            <div class="plans-grid">
+              <article class="plan-card"><div class="plan-heading"><span class="plan-label" data-i18n="monthlyLabel">MONTHLY STARTER</span><h3 data-i18n="monthlyName">Monthly Starter</h3></div><p class="plan-price"><strong>30</strong><span>JOD</span><small data-i18n="perMonth">/ month</small></p><p class="plan-duration" data-i18n="days30">30 days</p><ul><li data-i18n="monthlyFeature1">Full Gym Floor & Equipment Access</li><li data-i18n="monthlyFeature2">Instant Gate Check-In via Member ID</li><li data-i18n="monthlyFeature3">4 Group Fitness Classes / Month</li><li data-i18n="monthlyFeature4">24/7 Digital Member Portal</li></ul><a class="button button-secondary plan-button" href="register.html?plan=monthly" data-i18n="choosePlan">Choose plan</a></article>
+              <article class="plan-card plan-featured"><span class="popular-badge" data-i18n="popularBadge">FREE MONTH OFFER</span><div class="plan-heading"><span class="plan-label" data-i18n="quarterLabel">3 MONTHS BUNDLE</span><h3 data-i18n="quarterName">3 Months Bundle</h3></div><p class="plan-price"><strong>60</strong><span>JOD</span><small data-i18n="perThreeMonths">/ 3 months</small></p><p class="plan-duration" data-i18n="days90">90 days</p><ul><li data-i18n="quarterFeature1">Pay for 2 Months & Get 1 Month Free (Save 30 JOD)</li><li data-i18n="quarterFeature2">Unlimited Gym Floor Access</li><li data-i18n="quarterFeature3">12 Group Fitness Classes Included</li><li data-i18n="quarterFeature4">Priority Class Seat Reservation</li></ul><a class="button button-primary plan-button" href="register.html?plan=three-months" data-i18n="choosePlan">Choose plan</a></article>
+              <article class="plan-card"><span class="popular-badge" data-i18n="annualBadge">BEST VALUE • MOST POPULAR</span><div class="plan-heading"><span class="plan-label" data-i18n="annualLabel">ANNUAL VIP</span><h3 data-i18n="annualName">Annual VIP</h3></div><p class="plan-price"><strong>200</strong><span>JOD</span><small data-i18n="perYear">/ 365 days</small></p><p class="plan-duration" data-i18n="days365">365 days</p><ul><li data-i18n="annualFeature1">365 Days Unlimited Gym Access</li><li data-i18n="annualFeature2">Unlimited Group Classes (CrossFit, HIIT, Boxing, Yoga)</li><li data-i18n="annualFeature3">Top-Priority Seat Booking</li><li data-i18n="annualFeature4">Dedicated Front-Desk Support</li></ul><a class="button button-secondary plan-button" href="register.html?plan=annual" data-i18n="choosePlan">Choose plan</a></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-muted" id="classes">
+          <div class="content-container">
+            <div class="section-heading"><p class="eyebrow" data-i18n="classesEyebrow">Move with a group</p><h2 data-i18n="classesTitle">FIND YOUR NEXT CLASS.</h2><p data-i18n="classesDescription">Explore coached sessions and save your place from the member portal.</p></div>
+            <div class="classes-grid">
+              <article class="class-card class-crossfit"><div class="class-top"><span class="class-tag" data-i18n="classStrength">STRENGTH &amp; CONDITIONING</span><span class="capacity"><i class="capacity-dot" aria-hidden="true"></i><span data-i18n="seatCapacity">SEAT CAPACITY</span></span></div><h3 data-i18n="crossfitTitle">CrossFit</h3><div class="class-meta"><span data-i18n="duration50">50 min</span><span data-i18n="capacityTwelve">Capacity: 12</span></div></article>
+              <article class="class-card class-hiit"><div class="class-top"><span class="class-tag" data-i18n="classCardio">CARDIO</span><span class="capacity"><i class="capacity-dot" aria-hidden="true"></i><span data-i18n="seatCapacity">SEAT CAPACITY</span></span></div><h3 data-i18n="hiitTitle">HIIT &amp; Cardio</h3><div class="class-meta"><span data-i18n="duration45">45 min</span><span data-i18n="capacitySixteen">Capacity: 16</span></div></article>
+              <article class="class-card class-boxing"><div class="class-top"><span class="class-tag" data-i18n="classCombat">COMBAT FITNESS</span><span class="capacity"><i class="capacity-dot" aria-hidden="true"></i><span data-i18n="seatCapacity">SEAT CAPACITY</span></span></div><h3 data-i18n="boxingTitle">Combat Boxing</h3><div class="class-meta"><span data-i18n="duration45">45 min</span><span data-i18n="capacityTen">Capacity: 10</span></div></article>
+              <article class="class-card class-yoga"><div class="class-top"><span class="class-tag" data-i18n="classMobility">MOBILITY &amp; BALANCE</span><span class="capacity"><i class="capacity-dot" aria-hidden="true"></i><span data-i18n="seatCapacity">SEAT CAPACITY</span></span></div><h3 data-i18n="yogaTitle">Power Yoga</h3><div class="class-meta"><span data-i18n="duration60">60 min</span><span data-i18n="capacityFourteen">Capacity: 14</span></div></article>
+            </div>
+            <div class="classes-action"><a class="button button-secondary" href="classes.html" data-i18n="classesButton">Explore classes</a></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="contact">
+        <div class="content-container footer-grid">
+          <div class="footer-brand"><a class="brand" href="#overview"><img class="brand-mark" src="shared/assets/plus-ultra.png" alt="" aria-hidden="true"><span class="brand-name" data-i18n="brand">PLUS ULTRA <b>GYM</b></span></a><p data-i18n="footerTagline">A smarter way to manage your gym membership and keep moving.</p></div>
+          <div><h2 data-i18n="footerVisit">VISIT US</h2><p data-i18n="location">Downtown, Amman, Jordan</p><p data-i18n="hours">Daily &#183; 6:00 AM&#8211;11:00 PM</p></div>
+          <div><h2 data-i18n="footerContact">FRONT-DESK SUPPORT</h2><p data-i18n="contactText">For assistance, our reception team is ready to help.</p></div>
+          <div><h2 data-i18n="footerExplore">QUICK LINKS</h2><a href="#memberships" data-i18n="memberships">Memberships</a><a href="#classes" data-i18n="classes">Classes</a><a href="login.html" data-i18n="memberLogin">Member Login</a></div>
+        </div>
+        <div class="content-container footer-bottom"><span>&#169; <span data-current-year></span> Plus Ultra Gym</span><span data-i18n="footerNote">Membership requests are reviewed by our staff.</span></div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
+
