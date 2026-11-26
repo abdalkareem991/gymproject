@@ -10,6 +10,19 @@ auth_require_csrf();
 $input = auth_json_input();
 $planId = positive_id($input['plan_id'] ?? null);
 if ($planId === null) json_error('Choose a valid membership plan.', 422);
+$paymentMethod = strtoupper((string) ($input['payment_method'] ?? 'RECEPTION'));
+if (!in_array($paymentMethod, ['CARD', 'RECEPTION'], true)) json_error('Choose a valid payment method.', 422);
+
+try {
+    $settings = payment_settings_load();
+    $cardPaymentAvailable = $settings['online_enabled'] && payment_gateway_is_configured();
+    if ($paymentMethod === 'CARD' && !$cardPaymentAvailable) {
+        json_error('Card payment is not available yet. Choose reception payment.', 503);
+    }
+} catch (Throwable $exception) {
+    error_log('Member payment availability lookup failed: ' . $exception->getMessage());
+    json_error('Payment options are temporarily unavailable.', 503);
+}
 
 try {
     $pdo = db();
@@ -39,14 +52,13 @@ try {
     $insert->execute(['member_id' => $member['id'], 'plan_id' => $planId, 'starts' => $starts->format('Y-m-d'), 'ends' => $ends->format('Y-m-d')]);
     $id = (int) $pdo->lastInsertId();
     $pdo->commit();
-    $settings = payment_settings_load($pdo);
-    $onlineAvailable = $settings['online_enabled'] && payment_gateway_is_configured();
     json_success([
         'membership_id' => $id,
         'starts_on' => $starts->format('Y-m-d'),
         'ends_on' => $ends->format('Y-m-d'),
-        'online_available' => $onlineAvailable,
-    ], $onlineAvailable ? 'Membership request submitted. Continue to secure card checkout.' : 'Membership request submitted. Complete payment at reception for approval.', 201);
+        'online_available' => $paymentMethod === 'CARD',
+        'payment_method' => $paymentMethod,
+    ], $paymentMethod === 'CARD' ? 'Membership request submitted. Continue to secure card checkout.' : 'Membership request submitted. Complete payment at reception for approval.', 201);
 } catch (Throwable $exception) {
     if (isset($pdo) && $pdo->inTransaction()) $pdo->rollBack();
     error_log('Member renewal request failed: ' . $exception->getMessage());

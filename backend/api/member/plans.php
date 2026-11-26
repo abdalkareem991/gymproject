@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/common.php';
+require_once __DIR__ . '/../../helpers/payment_settings.php';
+require_once __DIR__ . '/../../helpers/payment_gateway.php';
 auth_require_method('GET');
 member_user();
 
@@ -19,7 +21,9 @@ try {
             : null;
     }
     unset($plan);
-    json_success(['plans' => $plans]);
+    $settings = payment_settings_load();
+    $cardPaymentAvailable = $settings['online_enabled'] && payment_gateway_is_configured();
+    json_success(['plans' => $plans, 'card_payment_available' => $cardPaymentAvailable]);
 } catch (Throwable $exception) {
     error_log('Member plan lookup failed: ' . $exception->getMessage());
     json_error('Membership plans are temporarily unavailable.', 500);
